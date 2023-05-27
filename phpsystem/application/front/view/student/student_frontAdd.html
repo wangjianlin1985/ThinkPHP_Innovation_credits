@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
+<title>学生添加</title>
+<link href="__PUBLIC__/plugins/bootstrap.css" rel="stylesheet">
+<link href="__PUBLIC__/plugins/bootstrap-dashen.css" rel="stylesheet">
+<link href="__PUBLIC__/plugins/font-awesome.css" rel="stylesheet">
+<link href="__PUBLIC__/plugins/animate.css" rel="stylesheet">
+<link href="__PUBLIC__/plugins/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+</head>
+<body style="margin-top:70px;">
+<div class="container">
+{include file="common/header" /}
+	<div class="col-md-12 wow fadeInLeft">
+		<ul class="breadcrumb">
+  			<li><a href="__PUBLIC__/index.php">首页</a></li>
+  			<li><a href="__PUBLIC__/Student/frontlist">学生管理</a></li>
+  			<li class="active">添加学生</li>
+		</ul>
+		<div class="row">
+			<div class="col-md-10">
+		      	<form class="form-horizontal" name="studentAddForm" id="studentAddForm" enctype="multipart/form-data" method="post"  class="mar_t15">
+				  <div class="form-group">
+					 <label for="student_user_name" class="col-md-2 text-right">学号:</label>
+					 <div class="col-md-8"> 
+					 	<input type="text" id="student_user_name" name="student_user_name" class="form-control" placeholder="请输入学号">
+					 </div>
+				  </div> 
+				  <div class="form-group">
+				  	 <label for="student_password" class="col-md-2 text-right">登录密码:</label>
+				  	 <div class="col-md-8">
+					    <input type="text" id="student_password" name="student_password" class="form-control" placeholder="请输入登录密码">
+					 </div>
+				  </div>
+				  <div class="form-group">
+				  	 <label for="student_classObj_classNo" class="col-md-2 text-right">所在班级:</label>
+				  	 <div class="col-md-8">
+					    <select id="student_classObj_classNo" name="student.classObj.classNo" class="form-control">
+					    </select>
+				  	 </div>
+				  </div>
+				  <div class="form-group">
+				  	 <label for="student_name" class="col-md-2 text-right">姓名:</label>
+				  	 <div class="col-md-8">
+					    <input type="text" id="student_name" name="student_name" class="form-control" placeholder="请输入姓名">
+					 </div>
+				  </div>
+				  <div class="form-group">
+				  	 <label for="student_gender" class="col-md-2 text-right">性别:</label>
+				  	 <div class="col-md-8">
+					    <input type="text" id="student_gender" name="student_gender" class="form-control" placeholder="请输入性别">
+					 </div>
+				  </div>
+				  <div class="form-group">
+				  	 <label for="student_birthDateDiv" class="col-md-2 text-right">出生日期:</label>
+				  	 <div class="col-md-8">
+		                <div id="student_birthDateDiv" class="input-group date student_birthDate col-md-12" data-link-field="student_birthDate" data-link-format="yyyy-mm-dd">
+		                    <input class="form-control" id="student_birthDate" name="student_birthDate" size="16" type="text" value="" placeholder="请选择出生日期" readonly>
+		                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+		                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+				  	 </div>
+				  </div>
+				  <div class="form-group">
+				  	 <label for="student_userPhoto" class="col-md-2 text-right">学生照片:</label>
+				  	 <div class="col-md-8">
+					    <img  class="img-responsive" id="student_userPhotoImg" border="0px"/><br/>
+					    <input type="hidden" id="student_userPhoto" name="student_userPhoto"/>
+					    <input id="userPhotoFile" name="userPhotoFile" type="file" size="50" />
+				  	 </div>
+				  </div>
+				  <div class="form-group">
+				  	 <label for="student_telephone" class="col-md-2 text-right">联系电话:</label>
+				  	 <div class="col-md-8">
+					    <input type="text" id="student_telephone" name="student_telephone" class="form-control" placeholder="请输入联系电话">
+					 </div>
+				  </div>
+				  <div class="form-group">
+				  	 <label for="student_email" class="col-md-2 text-right">邮箱:</label>
+				  	 <div class="col-md-8">
+					    <input type="text" id="student_email" name="student_email" class="form-control" placeholder="请输入邮箱">
+					 </div>
+				  </div>
+				  <div class="form-group">
+				  	 <label for="student_address" class="col-md-2 text-right">家庭地址:</label>
+				  	 <div class="col-md-8">
+					    <input type="text" id="student_address" name="student_address" class="form-control" placeholder="请输入家庭地址">
+					 </div>
+				  </div>
+				  <div class="form-group" style="display:none;">
+				  	 <label for="student_regTimeDiv" class="col-md-2 text-right">注册时间:</label>
+				  	 <div class="col-md-8">
+		                <div id="student_regTimeDiv" class="input-group date student_regTime col-md-12" data-link-field="student_regTime">
+		                    <input class="form-control" id="student_regTime" name="student_regTime" size="16" type="text" value="" placeholder="请选择注册时间" readonly>
+		                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+		                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+				  	 </div>
+				  </div>
+		          <div class="form-group">
+		             <span class="col-md-2"></span>
+		             <span onclick="ajaxStudentAdd();" class="btn btn-primary bottom5 top5">学生注册</span>
+		          </div> 
+		          <style>#studentAddForm .form-group {margin:5px;}  </style>  
+				</form> 
+			</div>
+			<div class="col-md-2"></div> 
+	    </div>
+	</div>
+</div>
+{include file="common/footer" /}
+<script src="__PUBLIC__/plugins/jquery.min.js"></script>
+<script src="__PUBLIC__/plugins/bootstrap.js"></script>
+<script src="__PUBLIC__/plugins/wow.min.js"></script>
+<script src="__PUBLIC__/plugins/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/plugins/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="__PUBLIC__/plugins/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script>
+	//提交添加学生信息
+	function ajaxStudentAdd() { 
+		//提交之前先验证表单
+		$("#studentAddForm").data('bootstrapValidator').validate();
+		if(!$("#studentAddForm").data('bootstrapValidator').isValid()){
+			return;
+		}
+		jQuery.ajax({
+			type : "post",
+			url : "{:url('Student/frontAdd')}",
+			dataType : "json" , 
+			data: new FormData($("#studentAddForm")[0]),
+			success : function(obj) {
+				if(obj.success){ 
+					alert("保存成功！");
+					$("#studentAddForm").find("input").val("");
+					$("#studentAddForm").find("textarea").val("");
+				} else {
+					alert(obj.message);
+				}
+			},
+			processData: false, 
+			contentType: false, 
+		});
+	} 
+$(function(){
+	/*小屏幕导航点击关闭菜单*/
+    $('.navbar-collapse a').click(function(){
+        $('.navbar-collapse').collapse('hide');
+    });
+    new WOW().init();
+	//验证学生添加表单字段
+	$('#studentAddForm').bootstrapValidator({
+		feedbackIcons: {
+			valid: 'glyphicon glyphicon-ok',
+			invalid: 'glyphicon glyphicon-remove',
+			validating: 'glyphicon glyphicon-refresh'
+		},
+		fields: {
+			"student_user_name": {
+				validators: {
+					notEmpty: {
+						message: "学号不能为空",
+					}
+				}
+			},
+			"student_password": {
+				validators: {
+					notEmpty: {
+						message: "登录密码不能为空",
+					}
+				}
+			},
+			"student_name": {
+				validators: {
+					notEmpty: {
+						message: "姓名不能为空",
+					}
+				}
+			},
+			"student_gender": {
+				validators: {
+					notEmpty: {
+						message: "性别不能为空",
+					}
+				}
+			},
+			"student_birthDate": {
+				validators: {
+					notEmpty: {
+						message: "出生日期不能为空",
+					}
+				}
+			},
+			"student_telephone": {
+				validators: {
+					notEmpty: {
+						message: "联系电话不能为空",
+					}
+				}
+			},
+			"student_email": {
+				validators: {
+					notEmpty: {
+						message: "邮箱不能为空",
+					}
+				}
+			},
+
+		}
+	}); 
+	//初始化所在班级下拉框值 
+	$.ajax({
+		url: "{:url('ClassInfo/listAll')}",
+		type: "get",
+		dataType : "json" ,
+		success: function(classInfos,response,status) { 
+			$("#student_classObj_classNo").empty();
+			var html="";
+    		$(classInfos).each(function(i,classInfo){
+    			html += "<option value='" + classInfo.classNo + "'>" + classInfo.className + "</option>";
+    		});
+    		$("#student_classObj_classNo").html(html);
+    	}
+	});
+	//出生日期组件
+	$('#student_birthDateDiv').datetimepicker({
+		language:  'zh-CN',  //显示语言
+		format: 'yyyy-mm-dd',
+		minView: 2,
+		weekStart: 1,
+		todayBtn:  1,
+		autoclose: 1,
+		minuteStep: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0
+	}).on('hide',function(e) {
+		//下面这行代码解决日期组件改变日期后不验证的问题
+		$('#studentAddForm').data('bootstrapValidator').updateStatus('student_birthDate', 'NOT_VALIDATED',null).validateField('student_birthDate');
+	});
+	//注册时间组件
+	$('#student_regTimeDiv').datetimepicker({
+		language:  'zh-CN',  //显示语言
+		format: 'yyyy-mm-dd hh:ii:ss',
+		weekStart: 1,
+		todayBtn:  1,
+		autoclose: 1,
+		minuteStep: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0
+	}).on('hide',function(e) {
+		//下面这行代码解决日期组件改变日期后不验证的问题
+		$('#studentAddForm').data('bootstrapValidator').updateStatus('student_regTime', 'NOT_VALIDATED',null).validateField('student_regTime');
+	});
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/backcss/innovateType.css" />
+
+<div id="innovateType_manage"></div>
+<div id="innovateType_manage_tool" style="padding:5px;">
+	<div style="margin-bottom:5px;">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit-new" plain="true" onclick="innovateType_manage_tool.edit();">修改</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-delete-new" plain="true" onclick="innovateType_manage_tool.remove();">删除</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true"  onclick="innovateType_manage_tool.reload();">刷新</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="innovateType_manage_tool.redo();">取消选择</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-export" plain="true" onclick="innovateType_manage_tool.exportExcel();">导出到excel</a>
+	</div>
+	<div style="padding:0 0 0 7px;color:#333;">
+		<form id="innovateTypeQueryForm" method="post">
+			创新类型名称：<input type="text" class="textbox" id="innovateTypeName" name="innovateTypeName" style="width:110px" />
+			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="innovateType_manage_tool.search();">查询</a>
+		</form>	
+	</div>
+</div>
+
+<div id="innovateTypeEditDiv">
+	<form id="innovateTypeEditForm" enctype="multipart/form-data"  method="post">
+		<div>
+			<span class="label">创新类型id:</span>
+			<span class="inputControl">
+				<input class="textbox" type="text" id="innovateType_innovateTypeId_edit" name="innovateType_innovateTypeId" style="width:200px" />
+			</span>
+		</div>
+		<div>
+			<span class="label">创新类型名称:</span>
+			<span class="inputControl">
+				<input class="textbox" type="text" id="innovateType_innovateTypeName_edit" name="innovateType_innovateTypeName" style="width:200px" />
+
+			</span>
+
+		</div>
+		<div>
+			<span class="label">实践内容:</span>
+			<span class="inputControl">
+				<textarea id="innovateType_sjnr_edit" name="innovateType_sjnr" rows="8" cols="60"></textarea>
+
+			</span>
+
+		</div>
+		<div>
+			<span class="label">学分:</span>
+			<span class="inputControl">
+				<input class="textbox" type="text" id="innovateType_xuefen_edit" name="innovateType_xuefen" style="width:80px" />
+
+			</span>
+
+		</div>
+		<div>
+			<span class="label">成绩记载:</span>
+			<span class="inputControl">
+				<textarea id="innovateType_cjjz_edit" name="innovateType_cjjz" rows="8" cols="60"></textarea>
+
+			</span>
+
+		</div>
+	</form>
+</div>
+<script>
+	var publicURL = "__PUBLIC__/";
+	var backURL = "__PUBLIC__/index.php/back/";
+</script>
+<script type="text/javascript" src="__PUBLIC__/backjs/innovateType/innovateType_manage.js"></script>
